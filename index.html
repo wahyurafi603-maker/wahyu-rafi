@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Mustabsyir Academy - Belajar Ushul Fiqh, Bahasa Arab & Inggris via Zoom. Pilih kelas favorit Anda: Rp70.000/kelas/bulan. Diskon 2 kelas Rp120.000. Akses grup private khusus member berbayar.">
+  <title>Mustabsyir Academy | Pilih Kelas Favorit - Rp70.000/kelas | Diskon 2 Kelas Rp120.000</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f5c4b;
+      --primary-dark: #084438;
+      --primary-light: #258571;
+      --gold: #c9a03d;
+      --gold-dark: #a67c1e;
+      --gold-light: #f1e0a8;
+      --white: #ffffff;
+      --light-bg: #faf8f2;
+      --dark-bg: #0c1412;
+      --card-light: rgba(255, 255, 255, 0.96);
+      --text-dark: #1f2a27;
+      --shadow-sm: 0 15px 35px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.08);
+      --shadow-gold: 0 15px 30px rgba(201, 160, 61, 0.15);
+    }
+
+    body.dark {
+      --white: #0c1412;
+      --light-bg: #0f1815;
+      --card-light: rgba(22, 32, 28, 0.98);
+      --text-dark: #e8edea;
+      background: #0c1412;
+      color: #e8edea;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      transition: background 0.3s, color 0.2s;
+      overflow-x: hidden;
+    }
+
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fef9ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      flex-direction: column;
+      transition: opacity 0.7s ease;
+    }
+    body.dark #loading-screen { background: #0a120f; }
+    .loader-premium {
+      text-align: center;
+    }
+    .loader-premium .logo-load {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+    }
+    .loader-premium .bar {
+      width: 220px;
+      height: 3px;
+      background: rgba(201, 160, 61, 0.2);
+      border-radius: 10px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+    .loader-premium .bar-fill {
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--primary-light));
+      animation: loadMove 1.2s ease infinite alternate;
+    }
+    @keyframes loadMove { 0% { width: 10%; } 100% { width: 90%; } }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.88);
+      z-index: 1000;
+      padding: 0.8rem 2rem;
+      transition: 0.25s;
+      border-bottom: 1px solid rgba(201, 160, 61, 0.25);
+    }
+    body.dark .navbar { background: rgba(12, 20, 18, 0.92); border-bottom-color: rgba(201, 160, 61, 0.3); }
+    .navbar.scrolled { background: rgba(15, 92, 75, 0.96); box-shadow: var(--shadow-sm); }
+    .navbar.scrolled .logo, .navbar.scrolled .nav-links a { color: white; }
+    .navbar.scrolled .dark-toggle { color: var(--gold-light); }
+    .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(125deg, var(--primary), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-weight: 600; color: #1f2a27; transition: 0.2s; font-size: 0.95rem; }
+    body.dark .nav-links a { color: #dce5e1; }
+    .nav-links a:hover { color: var(--gold); }
+    .menu-toggle { display: none; font-size: 1.6rem; cursor: pointer; }
+    .dark-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-left: 0.5rem; color: var(--primary); }
+
+    /* Hero */
+    .hero {
+      min-height: 95vh;
+      position: relative;
+      background: linear-gradient(125deg, #fef8ed 0%, #fdf3e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    body.dark .hero { background: linear-gradient(135deg, #0b1814, #05120e); }
+    .hero-content { max-width: 950px; padding: 2rem; position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201, 160, 61, 0.15);
+      backdrop-filter: blur(4px);
+      padding: 6px 22px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(201, 160, 61, 0.5);
+    }
+    .hero h1 { font-size: 4.5rem; font-weight: 800; background: linear-gradient(135deg, #0f5c4b, #c9a03d); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -1px; margin-bottom: 0.5rem; }
+    .hero .subtitle { font-size: 1.7rem; font-weight: 500; color: #4a5b54; margin-bottom: 1rem; }
+    body.dark .hero .subtitle { color: #cbdcd6; }
+    .hero .description { font-size: 1.05rem; color: #5c6b64; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6; }
+    .btn { padding: 14px 34px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; transition: all 0.3s ease; border: none; cursor: pointer; font-size: 0.95rem; }
+    .btn-primary { background: linear-gradient(105deg, var(--primary), #1a7b64); color: white; box-shadow: 0 6px 18px rgba(15, 92, 75, 0.3); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15, 92, 75, 0.4); }
+    .btn-outline { border: 2px solid var(--gold); background: transparent; color: var(--gold-dark); }
+    .btn-outline:hover { background: var(--gold); color: #1f2a27; border-color: var(--gold); transform: translateY(-2px); }
+    .btn-gold { background: linear-gradient(95deg, var(--gold), #e6c87a); color: #1f2a27; font-weight: 700; }
+    .btn-wa-admin { background: #25d366; color: white; border: none; padding: 14px 28px; border-radius: 60px; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 12px; font-size: 1rem; text-decoration: none; }
+    .btn-wa-admin:hover { transform: scale(1.02); background: #20b359; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+    .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: float 2s infinite; }
+    @keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+
+    section { padding: 90px 20px; }
+    .container { max-width: 1300px; margin: auto; }
+    .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 2.8rem; font-weight: 700; letter-spacing: -0.3px; position: relative; display: inline-block; width: 100%; }
+    .section-title:after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 70px; height: 3px; background: linear-gradient(90deg, var(--gold), var(--primary)); border-radius: 3px; }
+    .glass-card { background: var(--card-light); backdrop-filter: blur(8px); border-radius: 1.8rem; padding: 2rem; transition: all 0.3s; border: 1px solid rgba(201, 160, 61, 0.2); box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; }
+    .glass-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: var(--shadow-gold); }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Package Card Styling */
+    .package-price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 15px 0;
+    }
+    .package-price small {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #9e9180;
+    }
+    .btn-package {
+      margin-top: auto;
+      justify-content: center;
+    }
+    .discount-badge {
+      background: linear-gradient(135deg, #e67e22, #f39c12);
+      color: white;
+      font-size: 0.7rem;
+      border-radius: 40px;
+      padding: 4px 12px;
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .bundle-card {
+      background: linear-gradient(135deg, rgba(201,160,61,0.15), rgba(15,92,75,0.1));
+      border: 2px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .bundle-card::after {
+      content: "⭐ BEST DEAL ⭐";
+      position: absolute;
+      top: 12px;
+      right: -30px;
+      background: var(--gold);
+      color: #1f2a27;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 4px 30px;
+      transform: rotate(45deg);
+      transform-origin: center;
+    }
+
+    /* Grup Member Private */
+    .private-group-card {
+      background: linear-gradient(135deg, #0f5c4b, #0a3d32);
+      border-radius: 2rem;
+      padding: 2rem;
+      text-align: center;
+      color: white;
+      margin-top: 1.5rem;
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .private-group-card::before {
+      content: "🔒";
+      font-size: 140px;
+      position: absolute;
+      bottom: -30px;
+      right: -20px;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .lock-icon {
+      background: rgba(255,255,255,0.2);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 2.2rem;
+      backdrop-filter: blur(4px);
+    }
+    .admin-number-box {
+      background: rgba(255,255,255,0.15);
+      border-radius: 60px;
+      padding: 12px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0;
+      backdrop-filter: blur(8px);
+    }
+    .info-zoom-hidden {
+      background: rgba(0,0,0,0.3);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--gold);
+      text-align: left;
+    }
+
+    /* Flyer */
+    .flyer-maqasid {
+      background: linear-gradient(135deg, #fff9ef, #fff3e3);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid var(--gold);
+      box-shadow: var(--shadow-md);
+    }
+    body.dark .flyer-maqasid { background: #182622; }
+
+    /* Sertifikat */
+    .certificate-preview {
+      background: linear-gradient(145deg, #fffbf0, #fff5e2);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 2px solid var(--gold);
+    }
+    .student-name { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; border-bottom: 2px solid var(--gold); }
+    .signature-canvas { border: 2px solid var(--gold); background: white; border-radius: 12px; width: 200px; height: 80px; cursor: crosshair; }
+    .teacher-panel { background: var(--primary-dark); border-radius: 2rem; padding: 2rem; color: white; }
+
+    footer { background: #071c17; color: #cfddd8; padding: 2rem; text-align: center; margin-top: 2rem; }
+    .wa-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: 0.2s; z-index: 99; text-decoration: none; color: white; }
+    .back-top { position: fixed; bottom: 100px; right: 30px; background: var(--primary); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.8; z-index: 99; color: white; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; flex-direction: column; width: 100%; background: var(--card-light); padding: 1rem; border-radius: 2rem; margin-top: 0.8rem; }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: block; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero .subtitle { font-size: 1.3rem; }
+      .section-title { font-size: 1.9rem; }
+      .package-price { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div id="loading-screen">
+  <div class="loader-premium"><div class="logo-load">MUSTABSYIR ACADEMY</div><div class="bar"><div class="bar-fill"></div></div><p style="color: var(--gold-dark);">Pilih kelas favorit Anda</p></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container"><div class="logo">M✦STABSYIR</div><div class="menu-toggle" id="mobileMenu"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="navLinks"><li><a href="#beranda">Beranda</a></li><li><a href="#program">Program</a></li><li><a href="#flyerSpecial">Maqasid</a></li><li><a href="#aksesMember">Akses Member</a></li><li><a href="#langganan">Langganan</a></li><li><a href="#" id="teacherMenuBtn" style="color: var(--gold);"><i class="fas fa-certificate"></i> Sertifikat</a></li></ul>
+    <button id="darkModeBtn" class="dark-toggle"><i class="fas fa-moon"></i></button>
+  </div>
+</nav>
+
+<section id="beranda" class="hero">
+  <div class="hero-content"><div class="hero-badge"><i class="fas fa-university"></i> Alumni Universitas Islam Madinah</div><h1>MUSTABSYIR ACADEMY</h1><div class="subtitle">Belajar Syari & Bahasa bersama Asatidz</div><p class="description">Zoom interaktif: Pilih kelas sesuai kebutuhan Anda. <strong>Rp70.000/kelas/bulan</strong>. Ambil 2 kelas sekaligus hanya <strong>Rp120.000</strong>! Program <strong>Maqasid Syari'iah</strong> juga tersedia dari Alumni Madinah.</p><div class="btn-group"><a href="#langganan" class="btn btn-primary"><i class="fas fa-calendar-plus"></i> Pilih Kelas Sekarang</a><a href="#flyerSpecial" class="btn btn-outline"><i class="fas fa-scroll"></i> Program Maqasid</a></div></div>
+  <div class="scroll-indicator"><a href="#program"><i class="fas fa-chevron-down"></i></a></div>
+</section>
+
+<section id="program"><div class="container"><h2 class="section-title" data-aos="fade-up">📚 Pilih Kelas Favorit Anda</h2>
+  <div class="grid-3">
+    <div class="glass-card" data-aos="flip-left">
+      <i class="fas fa-balance-scale fa-3x" style="color:var(--gold);"></i>
+      <h3 style="margin: 15px 0;">Ushul Fiqh</h3>
+      <p>Kaidah Ushul, Qiyas, Maqasid Syariah, Fiqh Kontemporer. Dibimbing langsung oleh alumni Universitas Islam Madinah.</p>
+      <div style="margin: 10px 0;"><i class="fas fa-chalkboard-user"></i> <strong>Ustadz Toyyib Maulidi, Lc., M.Pd.</strong><br><small>🎓 Universitas Islam Madinah</small></div>
+      <div class="package-price">Rp70.000 <small>/bulan</small></div>
+      <a href="https://wa.me/6285882490309?text=Assalamu'alaikum%20saya%20tertarik%20kelas%20USHUL%20FIQH%20Mustabsyir%20Academy%20(70rb)%0ANama%20%3A%0AAsal%20Kota%20%3A" class="btn btn-primary btn-package" style="text-decoration: none; display: inline-flex;"><i class="fab fa-whatsapp"></i> Ambil Kelas Ini</a>
+    </div>
+    <div class="glass-card" data-aos="flip-left">
+      <i class="fas fa-quran fa-3x" style="color:var(--gold);"></i>
+      <h3 style="margin: 15px 0;">Bahasa Arab</h3>
+      <p>Metode Fun Learning, percakapan Islami, kosa kata harian, lagu-lagu edukatif. Khusus untuk anak-anak (usia 7-14 tahun).</p>
+      <div style="margin: 10px 0;"><i class="fas fa-chalkboard-user"></i> <strong>Ustadz Hamzah</strong><br><small>Pengajar spesialis anak</small></div>
+      <div class="package-price">Rp70.000 <small>/bulan</small></div>
+      <a href="https://wa.me/6285882490309?text=Assalamu'alaikum%20saya%20tertarik%20kelas%20BAHASA%20ARAB%20(Anak)%20Mustabsyir%20Academy%20(70rb)%0ANama%20%3A%0AAsal%20Kota%20%3A" class="btn btn-primary btn-package" style="text-decoration: none; display: inline-flex;"><i class="fab fa-whatsapp"></i> Ambil Kelas Ini</a>
+    </div>
+    <div class="glass-card" data-aos="flip-left">
+      <i class="fas fa-language fa-3x" style="color:var(--gold);"></i>
+      <h3 style="margin: 15px 0;">Bahasa Inggris</h3>
+      <p>Phonics, vocabulary games, speaking practice, cerita interaktif. Khusus untuk anak-anak (usia 7-14 tahun).</p>
+      <div style="margin: 10px 0;"><i class="fas fa-chalkboard-user"></i> <strong>Ustadz Hamzah</strong><br><small>English for Kids</small></div>
+      <div class="package-price">Rp70.000 <small>/bulan</small></div>
+      <a href="https://wa.me/6285882490309?text=Assalamu'alaikum%20saya%20tertarik%20kelas%20BAHASA%20INGGRIS%20(Anak)%20Mustabsyir%20Academy%20(70rb)%0ANama%20%3A%0AAsal%20Kota%20%3A" class="btn btn-primary btn-package" style="text-decoration: none; display: inline-flex;"><i class="fab fa-whatsapp"></i> Ambil Kelas Ini</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- PAKET BUNDLE 2 KELAS Rp120.000 -->
+<section style="background: var(--light-bg);"><div class="container">
+  <h2 class="section-title" data-aos="fade-up">🎁 Hemat dengan Paket Bundling</h2>
+  <div style="max-width: 500px; margin: 0 auto;">
+    <div class="glass-card bundle-card" data-aos="zoom-in" style="text-align: center;">
+      <i class="fas fa-gift fa-3x" style="color:var(--gold); margin-bottom: 10px;"></i>
+      <h3 style="font-size: 1.8rem;">Paket 2 Kelas</h3>
+      <p style="margin: 10px 0;">Pilih 2 kelas favorit Anda (Ushul Fiqh / Bahasa Arab / Bahasa Inggris)</p>
+      <div class="package-price" style="font-size: 2.5rem;">Rp120.000 <small>/bulan</small></div>
+      <p style="text-decoration: line-through; color: #9e9180;">Normal Rp140.000</p>
+      <p style="color: #e67e22; font-weight: bold; margin: 10px 0;"><i class="fas fa-tag"></i> Hemat Rp20.000 setiap bulan!</p>
+      <ul style="text-align: left; margin: 20px 0; list-style: none;">
+        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Akses 2 kelas pilihan selama 1 bulan</li>
+        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Grup WhatsApp private member</li>
+        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> E-Sertifikat setelah menyelesaikan program</li>
+        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Rekaman Zoom & materi pendukung</li>
+      </ul>
+      <a href="https://wa.me/6285882490309?text=Assalamu'alaikum%20saya%20tertarik%20PAKET%202%20KELAS%20Mustabsyir%20Academy%20(120rb)%0ANama%20%3A%0AAsal%20Kota%20%3A%0AKelas%20pilihan%20%3A%20(contoh%3A%20Ushul%20Fiqh%20%2B%20Bahasa%20Arab)" class="btn btn-primary btn-package" style="background: linear-gradient(105deg, var(--gold), #b8860b); text-decoration: none; width: 100%; justify-content: center;"><i class="fab fa-whatsapp"></i> Ambil Paket 2 Kelas - Rp120.000</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="flyerSpecial" style="background: var(--light-bg);"><div class="container"><h2 class="section-title" data-aos="fade-up">✨ Program Eksklusif: Maqasid Syari'iah</h2>
+  <div class="flyer-maqasid" data-aos="zoom-in"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:1rem;"><div><h2><i class="fas fa-book-open"></i> ILMU SYARI'</h2><p>Kupas Tuntas: MAQASID SYARI'IAH — Tujuan Syariat Islam</p></div><div style="background:var(--gold); padding:5px 15px; border-radius:40px; font-weight:bold;"><i class="fas fa-graduation-cap"></i> Pemateri : Alumni MADINAH</div></div>
+    <div class="grid-3" style="margin: 1.2rem 0; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));"><div><i class="fas fa-file-pdf"></i> <strong>MODUL PDF</strong> + E-Sertifikat Free</div><div><i class="fas fa-laptop"></i> Zoom Online 1 Bulan Penuh</div><div><i class="fas fa-certificate"></i> Free E-Sertifikat Resmi</div></div>
+    <div style="text-align: center;"><a href="https://wa.me/6289655160679?text=Assalamu'alaikum%20saya%20tertarik%20program%20MAQASID%20SYARI'IAH" class="btn-wa-admin" style="background:#25d366; color:white;" target="_blank"><i class="fab fa-whatsapp"></i> Daftar Sekarang: 0896-5516-0679</a> <span style="margin-left: 1rem;"><i class="fas fa-zoom"></i> Pendaftaran dibuka setiap bulan</span></div>
+  </div>
+</div></section>
+
+<!-- HALAMAN AKSES MEMBER PRIVATE -->
+<section id="aksesMember" style="background: var(--light-bg);"><div class="container">
+  <h2 class="section-title" data-aos="fade-up">🔐 Akses Grup Member & Zoom Private</h2>
+  <div class="private-group-card" data-aos="zoom-in">
+    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+    <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Grup Private Khusus Member Berbayar</h3>
+    <p style="margin-bottom: 1rem; opacity: 0.9;">Link Zoom & Grup WhatsApp eksklusif hanya untuk santri yang telah melakukan konfirmasi pembayaran.</p>
+    
+    <div class="admin-number-box">
+      <i class="fab fa-whatsapp fa-2x"></i>
+      <span>+62 858-8249-0309</span>
+    </div>
+    
+    <a href="https://wa.me/6285882490309?text=Assalamu'alaikum%20Warahmatullah%20Wabarakatuh%0A%0ASaya%20tertarik%20bergabung%20dengan%20Mustabsyir%20Academy.%0A%0ANama%20%3A%20%0AAsal%20Kota%20%3A%0APilihan%20Kelas%20%3A%20(1%20kelas%2070rb%20/%202%20kelas%20120rb)%0A%0AMohon%20informasi%20pembayaran%20dan%20akses%20grup%20member.%20Jazakallah%20Khair." 
+       class="btn-wa-admin" style="background: #25d366; font-size: 1.1rem; padding: 14px 32px;" target="_blank">
+      <i class="fab fa-whatsapp"></i> Hubungi Admin untuk Verifikasi & Akses
+    </a>
+    
+    <div class="info-zoom-hidden">
+      <i class="fas fa-info-circle"></i> <strong>Bagaimana cara mendapatkan akses?</strong><br>
+      1️⃣ Klik tombol di atas untuk menghubungi admin via WhatsApp.<br>
+      2️⃣ Sampaikan nama, asal kota, dan pilihan kelas (1 kelas Rp70.000 atau 2 kelas Rp120.000).<br>
+      3️⃣ Lakukan pembayaran ke rekening yang akan diinfokan admin.<br>
+      4️⃣ Setelah konfirmasi, <strong>admin akan menambahkan nomor Anda ke Grup Private Member</strong> sesuai kelas pilihan dan mengirimkan Link Zoom aktif.<br><br>
+      <small><i class="fas fa-shield-alt"></i> Grup ini bersifat tertutup. Hanya member yang sudah lunas biaya langganan yang dapat mengakses jadwal zoom & materi eksklusif.</small>
+    </div>
+  </div>
+</div></section>
+
+<!-- AREA PENGAJAR + Sertifikat -->
+<div id="teacherAreaContainer" style="display: none; margin: 20px auto; max-width: 1300px; padding: 25px;">
+  <div class="teacher-panel"><h2><i class="fas fa-lock"></i> Area Sertifikasi Digital (Pengajar)</h2><p>Masukkan password untuk membuat sertifikat resmi</p><input type="password" id="teacherPassword" class="password-input" placeholder="Password Pengajar" style="padding:12px 20px; border-radius:60px; border:none; width:260px;"><button id="verifyTeacherBtn" class="btn btn-gold" style="background: var(--gold); color:#1f2a27; padding:12px 24px;">Akses Sertifikat</button>
+    <div id="certificateFullPanel" style="display: none; margin-top: 35px;"><div class="certificate-preview" id="certificateArea"><div style="text-align:center; border-bottom:2px solid var(--gold);"><h2 style="font-size:2rem;">MUSTABSYIR ACADEMY</h2><p>Lembaga Pendidikan Islam & Bahasa</p></div><div style="text-align:center; padding:1rem 0;"><p>Diberikan kepada :</p><input type="text" id="studentName" placeholder="Nama Lengkap Santri" style="font-size: 2rem; text-align: center; border: none; border-bottom: 2px solid var(--gold); width: 90%; background: transparent; font-weight: 700; margin: 10px 0;" value="Ahmad Fathul Lathif"><p>telah menyelesaikan program</p><select id="programType" style="padding: 6px 15px; border-radius: 30px;"><option>Ushul Fiqh</option><option>Bahasa Arab (Anak)</option><option>Bahasa Inggris (Anak)</option><option>Maqasid Syari'iah</option></select><p>dengan predikat <strong>Jayyid Jiddan</strong></p></div><div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-top:1.5rem;"><div><p><strong>Pengajar</strong></p><canvas id="teacherSignature" width="200" height="80" class="signature-canvas"></canvas><button id="clearTeacherSig" style="background:#e2dccd; border:none; padding:5px 15px; border-radius:30px; margin-top:8px;">Hapus TTD</button><p id="teacherNameDisplay" style="margin-top:5px;">Ustadz Toyyib Maulidi, Lc., M.Pd.<br><span style="font-size:0.7rem;">Alumni Universitas Islam Madinah</span></p></div><div><p><strong>Tanggal Lulus</strong></p><input type="date" id="certDate" value="2026-05-11" style="padding:8px; border-radius:20px;"></div></div><div style="text-align:center; margin-top:1rem;"><span>No. Sertifikat: MUST-</span><span id="randomId">XXXX</span></div><div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem;"><button id="generateAndPrintBtn" class="btn btn-primary"><i class="fas fa-print"></i> Cetak</button><button id="downloadCertBtn" class="btn btn-gold"><i class="fas fa-image"></i> Download PNG</button><button id="changeTeacherSignBtn" class="btn btn-outline">Ganti TTD Ustadz Hamzah</button></div></div></div></div>
+</div>
+
+<footer><div class="container"><h3 style="color: var(--gold);">MUSTABSYIR ACADEMY</h3><p><i class="fab fa-whatsapp"></i> Admin: +62 858-8249-0309 | Program Maqasid: 0896-5516-0679</p><p>Pilih kelas Anda: Ushul Fiqh (Rp70.000) | Bahasa Arab (Rp70.000) | Bahasa Inggris (Rp70.000) | Bundle 2 kelas Rp120.000</p><p>© 2026 Mustabsyir Academy — Tholabul Ilmi berkah</p></div></footer>
+
+<a href="https://wa.me/6285882490309?text=Assalamu'alaikum%20saya%20tertarik%20bergabung%20Mustabsyir%20Academy" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div class="back-top" id="backTop"><i class="fas fa-chevron-up"></i></div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+  window.addEventListener('load', () => { setTimeout(() => { let loader = document.getElementById('loading-screen'); loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500); }, 900); });
+  
+  const darkBtn = document.getElementById('darkModeBtn'); darkBtn.onclick = () => { document.body.classList.toggle('dark'); };
+  const mobile = document.getElementById('mobileMenu'); const navLinks = document.getElementById('navLinks'); mobile.onclick = () => navLinks.classList.toggle('show');
+  window.addEventListener('scroll', () => { const nav = document.getElementById('navbar'); if(window.scrollY>50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  document.getElementById('backTop').onclick = () => window.scrollTo({top:0,behavior:'smooth'});
+  
+  const teacherArea = document.getElementById('teacherAreaContainer'), teacherMenuBtn = document.getElementById('teacherMenuBtn'), verifyBtn = document.getElementById('verifyTeacherBtn'), passwordInput = document.getElementById('teacherPassword'), certificatePanel = document.getElementById('certificateFullPanel');
+  teacherMenuBtn.addEventListener('click', (e) => { e.preventDefault(); if(teacherArea.style.display==='none' || teacherArea.style.display===''){ teacherArea.style.display='block'; teacherArea.scrollIntoView({behavior:'smooth'}); } else { teacherArea.style.display='none'; certificatePanel.style.display='none'; } });
+  verifyBtn.addEventListener('click', () => { if(passwordInput.value === "mustabsyir2026") { certificatePanel.style.display='block'; initCertificateFeatures(); } else alert("Kode akses salah! Hubungi pengurus."); });
+  
+  function initCertificateFeatures() {
+    const canvasSig = document.getElementById('teacherSignature'); let ctx = canvasSig.getContext('2d'); let drawing = false;
+    canvasSig.width = 200; canvasSig.height = 80; ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvasSig.width,canvasSig.height); ctx.fillStyle = '#5c4a1a'; ctx.font = "italic 14px 'Plus Jakarta Sans'"; ctx.fillText("Tanda Tangan Pengajar", 45, 45); ctx.strokeStyle = "#c9a03d"; ctx.strokeRect(0,0,canvasSig.width,canvasSig.height);
+    function getCoords(e) { const rect = canvasSig.getBoundingClientRect(); const scaleX = canvasSig.width/rect.width, scaleY = canvasSig.height/rect.height; let cx,cy; if(e.touches) { cx=e.touches[0].clientX; cy=e.touches[0].clientY; } else { cx=e.clientX; cy=e.clientY; } let x=(cx-rect.left)*scaleX, y=(cy-rect.top)*scaleY; x=Math.min(Math.max(0,x),canvasSig.width); y=Math.min(Math.max(0,y),canvasSig.height); return {x,y}; }
+    function start(e) { drawing=true; ctx.beginPath(); const {x,y}=getCoords(e); ctx.moveTo(x,y); e.preventDefault(); }
+    function draw(e) { if(!drawing) return; const {x,y}=getCoords(e); ctx.lineTo(x,y); ctx.strokeStyle = "#b8860b"; ctx.lineWidth=2.2; ctx.stroke(); e.preventDefault(); }
+    function stop() { drawing=false; ctx.beginPath(); }
+    canvasSig.addEventListener('mousedown',start); canvasSig.addEventListener('mousemove',draw); canvasSig.addEventListener('mouseup',stop); canvasSig.addEventListener('touchstart',start); canvasSig.addEventListener('touchmove',draw); canvasSig.addEventListener('touchend',stop);
+    document.getElementById('clearTeacherSig')?.addEventListener('click',()=>{ ctx.clearRect(0,0,canvasSig.width,canvasSig.height); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvasSig.width,canvasSig.height); ctx.strokeRect(0,0,canvasSig.width,canvasSig.height); ctx.fillStyle='#5c4a1a'; ctx.fillText("Tanda Tangan Pengajar", 45, 45); });
+    document.getElementById('randomId').innerText = Math.floor(1000+Math.random()*9000);
+    let currentTeacher="toyyib"; const teacherSpan=document.getElementById('teacherNameDisplay'), changeBtn=document.getElementById('changeTeacherSignBtn');
+    changeBtn?.addEventListener('click',()=>{ if(currentTeacher==="toyyib"){ currentTeacher="hamzah"; teacherSpan.innerHTML="Ustadz Hamzah<br><span style='font-size:0.7rem;'>Pengajar Kelas Anak</span>"; changeBtn.innerText="Ganti ke Ustadz Toyyib (Madinah)"; } else { currentTeacher="toyyib"; teacherSpan.innerHTML="Ustadz Toyyib Maulidi, Lc., M.Pd.<br><span style='font-size:0.7rem;'>Alumni Universitas Islam Madinah</span>"; changeBtn.innerText="Ganti ke Ustadz Hamzah"; } ctx.clearRect(0,0,canvasSig.width,canvasSig.height); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvasSig.width,canvasSig.height); ctx.strokeRect(0,0,canvasSig.width,canvasSig.height); ctx.fillStyle='#5c4a1a'; ctx.fillText("Tanda Tangan Pengajar", 45, 45); });
+    async function downloadCertImg() { const el = document.getElementById('certificateArea'); const btns = el.querySelectorAll('button'); btns.forEach(btn=>btn.style.display='none'); try{ const canvas = await html2canvas(el, { scale: 2.5, backgroundColor: '#fffef7' }); const link = document.createElement('a'); link.download = `Sertifikat_${document.getElementById('studentName')?.value.trim() || 'Santri'}.png`; link.href = canvas.toDataURL(); link.click(); } catch(e){ alert("Gagal generate gambar."); } btns.forEach(btn=>btn.style.display='inline-flex'); }
+    function printCert() { const content = document.getElementById('certificateArea').cloneNode(true); const btns = content.querySelectorAll('button'); btns.forEach(btn=>btn.remove()); let canvasClone = content.querySelector('#teacherSignature'); if(canvasClone){ let img = document.createElement('img'); img.src = document.getElementById('teacherSignature').toDataURL(); img.style.width='200px'; img.style.height='80px'; canvasClone.parentNode.replaceChild(img,canvasClone); } const win = window.open('','_blank'); win.document.write(`<html><head><title>Sertifikat Mustabsyir</title><style>body{font-family:'Plus Jakarta Sans',sans-serif; padding:2rem;}</style></head><body>${content.outerHTML}</body></html>`); win.document.close(); win.print(); }
+    document.getElementById('generateAndPrintBtn')?.addEventListener('click', printCert);
+    document.getElementById('downloadCertBtn')?.addEventListener('click', downloadCertImg);
+  }
+</script>
+</body>
+</html>
